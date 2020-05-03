@@ -59,11 +59,23 @@ let appData = {
             let opt = prompt("Статья необязательных расходов?", "");
             appData.optionalExpenses[i] = opt;
         }
+    },
+    chooseIncome: function() {
+        let bool = true;
+        while(bool) {
+            items = prompt("Что принесет дополнительный доход? (Перечислите через запятую)");
+            if(typeof items === 'string' && items != null && items != '') {
+                bool = false
+            }
+        }
+        appData.income = items.split(', ');
+        appData.income.push(prompt('Может что-то еще?'));
+        appData.income.sort();
+        appData.income.forEach((item, i) => {
+            console.log(`${i + 1} ${item}`)
+        })
     }
 }
-
-
-
-appData.monePerDay = (appData.budget / 30).toFixed();
-
-alert("Ежедневный бюджет: " + appData.monePerDay);
+for(let key in appData) {
+    console.log(`Наша программа включает в себя данные: ${key} - ${appData[key]}`);
+}
