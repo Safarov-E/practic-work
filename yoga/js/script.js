@@ -32,7 +32,7 @@ window.addEventListener('DOMContentLoaded', function() {
     })
 
 
-    let deadline = '2020-10-20';
+    let deadline = '2020-10-25';
     function getTimeRemaining(endtime) {
         let t = Date.parse(endtime) - Date.parse(new Date()),
             seconds = Math.floor((t / 1000) % 60),
@@ -75,4 +75,25 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     }
     setClock('timer', deadline)
+
+
+
+
+    let more = document.querySelector('.more'),
+        overlay = document.querySelector('.overlay'),
+        close = document.querySelector('.popup-close'),
+        description = document.querySelector('.description');
+
+    more.addEventListener('click', modalShow)
+    description.addEventListener('click', modalShow)
+    function modalShow() {
+        overlay.style.display = 'block';
+        this.classList.add('more-splash');
+        document.body.style.overflow = 'hidden';
+    }
+    close.addEventListener('click', function() {
+        overlay.style.display = 'none';
+        more.classList.remove('more-splash');
+        document.body.style.overflow = '';
+    })
 })
